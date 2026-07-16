@@ -29,8 +29,10 @@ while True:
       library.display()
   elif choice==2:
       book=input("Enter book name:")
+      library.borrow(book)
   elif choice==3:
       book=input("Enter book name:")
+      library.return_book(book)
   elif choice==4:
       print("Thank you!")
       break
