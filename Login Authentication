@@ -1,0 +1,14 @@
+def login_required(func):
+    def wrapper(logged_in):
+        if logged_in:
+            return func(logged_in)
+        else:
+            print("Access Denied! Please log in first.")
+    return wrapper
+
+@login_required
+def dashboard(logged_in):
+    print("Welcome to your dashboard!")
+
+dashboard(True)
+dashboard(False)
