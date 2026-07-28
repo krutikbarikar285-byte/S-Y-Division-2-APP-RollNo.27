@@ -9,6 +9,6 @@ def logger(func):
 
 @logger
 def greet():
-    print("Hello, User!")
+    print("Hello, Krutik!")
 
 greet()
