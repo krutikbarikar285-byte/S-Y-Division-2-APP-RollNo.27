@@ -1,0 +1,16 @@
+import csv
+with open ("employee.csv","r") as file:
+    reader=csv.DictReader(file)
+
+    for employee in reader:
+        name=employee["a"]
+        monthly_salary=float(employee["b"])
+        annual_salary=monthly_salary*12
+
+        print("Employee:",name)
+        print("Annual Salary $:",annual_salary)
+        if monthly_salary>50000:
+            print("Monthlt salary is greater than 50k")
+        else:
+            print("Monthly salary is less than 50k")
+        print()        
