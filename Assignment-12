@@ -1,0 +1,42 @@
+
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+
+df = pd.read_csv("customer_churn.csv")
+
+print("Original Data:")
+print(df.head())
+
+print("\nMissing Values:")
+print(df.isnull().sum())
+
+df.drop_duplicates(inplace=True)
+
+df["Age"] = df["Age"].fillna(df["Age"].mean())
+df["MonthlyCharges"] = df["MonthlyCharges"].fillna(df["MonthlyCharges"].mean())
+df["Churn"] = df["Churn"].fillna(df["Churn"].mode()[0])
+
+print("\nCleaned Data:")
+print(df.head())
+
+print("\nSummary Statistics:")
+print(df.describe())
+
+print("\nChurn Count:")
+print(df["Churn"].value_counts())
+
+print("\nAverage Monthly Charges:")
+print(np.mean(df["MonthlyCharges"]))
+
+df["Churn"].value_counts().plot(kind="bar")
+plt.title("Customer Churn Analysis")
+plt.xlabel("Churn")
+plt.ylabel("Number of Customers")
+plt.show()
+
+df.groupby("Churn")["MonthlyCharges"].mean().plot(kind="bar")
+plt.title("Monthly Charges vs Churn")
+plt.xlabel("Churn")
+plt.ylabel("Average Monthly Charges")
+plt.show()
